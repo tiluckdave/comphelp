@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Request - CompHelp{% endblock title %}
+
+{% block requestActive %}active{% endblock requestActive %}
+
+{% block body %}
+<div class="container">
+{% for message in messages %}
+<div class="alert alert-{{message.tags}} alert-dismissible fade show my-3" role="alert">
+  <strong>{{ message }}</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+    <h2 class="my-3">Request a New Topic or Subject</h2>
+    <form action="/request" method="POST">
+        {% csrf_token %}
+        <div class="row g-2">
+            <div class="col-md">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Your Name">
+                    <label for="name">Name</label>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="form-floating">
+                    <select class="form-select" name="subject" id="subject" aria-label="Floating label select example">
+                        <option value="ds">Data Structures</option>
+                        <option value="cg">Compuetr Graphics</option>
+                        <option value="dt">Digital Techniques</option>
+                        <option value="mp">Microprocessors</option>
+                        <option value="new">New Subject (put your subject in below text feild)</option>
+                    </select>
+                    <label for="subject">Select Your Subject</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-floating">
+            <textarea class="form-control" name="content" placeholder="Leave a comment here" id="content"
+                style="height: 100px"></textarea>
+            <label for="content">Explain topic which you want (in brief): </label>
+        </div>
+        <div class="col-12 my-3">
+            <button type="submit" class="btn btn-primary">Request</button>
+        </div>
+    </form>
+</div>
+{% endblock body %}

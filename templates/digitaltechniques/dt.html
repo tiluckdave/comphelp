@@ -1,7 +1,22 @@
 {% extends 'base.html' %}
 
 {% block title %}DT - CompHelp{% endblock title %}
+{% block subjectActive %}active{% endblock subjectActive %}
+{% block body %}
+<div class="container my-3">
+<h2 class="my-3">All Topics in Digital Techniques</h2>
+<hr>
+<div class="card my-4">
+  <h4 class="card-header">
+    Title
+  </h4>
+  <div class="card-body">
+    <h5 class="card-title">Short Description</h5>
+    <a href="/digital-techniques/title" class="btn btn-primary">Read Complete Topic</a>
+  </div>
+  <div class="card-footer text-muted">
+Date Uploaded  </div>
+</div>
 
-{% block bofy %}
-
-{% endblock bofy %}
+</div>
+{% endblock body %}
