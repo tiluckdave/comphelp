@@ -3,6 +3,7 @@
 {% block title %}CG Posts - CompHelp{% endblock title %}
 {% block subjectActive %}active{% endblock subjectActive %}
 {% block style %}
+{% load static %}
 <style>
     @import url('https://fonts.googleapis.com/css?family=Open+Sans:700|Poppins:400');
 
@@ -99,6 +100,8 @@
         padding: 40px;
     }
 </style>
+<link rel="stylesheet" href="{% static '/prism/prism.css' %}">
+<script src="{% static '/prism/prism.js' %}"></script>
 {% endblock style %}
 {% block script %}
 
@@ -111,21 +114,24 @@
 <div class="container">
     <header class="header">
         <div class="header-image">
-            <img src="..." alt="blog image">
+            <img src="/media/{{cgpost.mainImage}}" alt="blog image">
         </div>
-        <h1>Title</h1>
-        <h4>Short Description</h3>
+        <h1>{{cgpost.title}}</h1>
+        <h4>{{cgpost.short}}</h3>
             <hr>
     </header>
     <main class="content">
         <h2>1. Introduction</h2>
-        <p>Intro Text</p>
+        <p>{{ cgpost.intro }}</p>
         <h2>2. Explanation</h2>
-        <p>Explainatory Text</p>
-        <h2>3. Algorithm</h2>
-        <p>Algorithm if any</p>
-        <h2>4. Code</h2>
-        <p>Code in respective subject language</p>
+        <pre><code class="language-textile">{{cgpost.explain}}</code></pre>
+        <h2>3. Images</h2>
+        <img src="/media/{{cgpost.image1}}" alt="blog image"><br>
+        <img src="/media/{{cgpost.image2}}" alt="Image 2">
+        <h2>4. Algorithm</h2>
+        <pre><code class="language-textile">{{cgpost.algo}}</code></pre>
+        <h2>5. Code in C</h2>
+        <pre><code class="language-c">{{cgpost.code}}</code></pre>
     </main>
 
 </div>

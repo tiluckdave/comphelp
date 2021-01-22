@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}DT Notes - CompHelp{% endblock title %}
+{% block subjectActive %}active{% endblock subjectActive %}
+{% block body %}
+<div class="container my-3">
+<div>
+<ul class="nav nav-pills">
+  <li class="nav-item">
+    <a class="nav-link" href="/digital-techniques">Topics</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="/digital-techniques/notes">Notes</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/digital-techniques/mcqs">MCQs</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/digital-techniques/links">Important Links</a>
+  </li>
+</ul>
+</div>
+
+<h2 class="my-3">All Notes in Digital Techniques</h2>
+<hr>
+<div class="card my-4">
+  <h4 class="card-header">
+    Title
+  </h4>
+  <div class="card-body">
+    <h5 class="card-title">Short Description</h5>
+    <a href="/digital-techniques/title" class="btn btn-primary">Read Complete Topic</a>
+  </div>
+  <div class="card-footer text-muted">
+Date Uploaded  </div>
+</div>
+
+</div>
+{% endblock body %}

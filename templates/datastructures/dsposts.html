@@ -4,6 +4,7 @@
 {% block subjectActive %}active{% endblock subjectActive %}
 
 {% block style %}
+{% load static %}
 <style>
     @import url('https://fonts.googleapis.com/css?family=Open+Sans:700|Poppins:400');
 
@@ -100,6 +101,8 @@
         padding: 40px;
     }
 </style>
+<link rel="stylesheet" href="{% static '/prism/prism.css' %}">
+<script src="{% static '/prism/prism.js' %}"></script>
 {% endblock style %}
 {% block script %}
 
@@ -112,21 +115,23 @@
 <div class="container">
     <header class="header">
         <div class="header-image">
-            <img src="..." alt="blog image">
+            <img src="/media/{{dspost.mainImage}}" alt="blog image">
         </div>
-        <h1>Title</h1>
-        <h4>Short Description</h3>
+        <h1>{{dspost.title}}</h1>
+        <h4>{{dspost.short}}</h3>
             <hr>
     </header>
     <main class="content">
         <h2>1. Introduction</h2>
-        <p>Intro Text</p>
+        <p>{{ dspost.intro }}</p>
         <h2>2. Explanation</h2>
-        <p>Explainatory Text</p>
-        <h2>3. Algorithm</h2>
-        <p>Algorithm if any</p>
-        <h2>4. Code</h2>
-        <p>Code in respective subject language</p>
+        <pre><code class="language-textile">{{dspost.explain}}</code></pre>
+        <h2>3. Images</h2>
+        <img src="/media/{{dspost.image1}}" alt="blog image">
+        <h2>4. Algorithm</h2>
+        <pre><code class="language-textile">{{dspost.algo}}</code></pre>
+        <h2>5. Code in C</h2>
+        <pre><code class="language-c">{{dspost.code}}</code></pre>
     </main>
 
 </div>

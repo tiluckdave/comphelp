@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}Search{% endblock title %}
+
+{% block body %}
+<div class="container">
+
+<h2 class="my-3">All Search Results</h2>
+<hr>
+{% if post1|length < 1 and post2|length < 1 and post3|length < 1 and post4|length < 1 %}
+<h4>No Search Results Found</h4>
+<p>Your Search - <b>{{query|truncatechars:30}}</b> did not match any results</p>
+{% endif %}
+{% for post in post1 %}
+<div class="card my-4">
+  <h4 class="card-header">
+    {{post.title}}
+  </h4>
+  <div class="card-body">
+    <h5 class="card-title">{{post.short}}</h5>
+    <a href="/data-structures/{{post.slug}}" class="btn btn-primary">Read Complete Topic</a>
+  </div>
+  <div class="card-footer text-muted">
+{{ post.date }}</div>
+</div>
+{% endfor %}
+{% for post in post2 %}
+<div class="card my-4">
+  <h4 class="card-header">
+    {{post.title}}
+  </h4>
+  <div class="card-body">
+    <h5 class="card-title">{{post.short}}</h5>
+    <a href="/digital-techniques/{{post.slug}}" class="btn btn-primary">Read Complete Topic</a>
+  </div>
+  <div class="card-footer text-muted">
+{{ post.date }}</div>
+</div>
+{% endfor %}
+{% for post in post3 %}
+<div class="card my-4">
+  <h4 class="card-header">
+    {{post.title}}
+  </h4>
+  <div class="card-body">
+    <h5 class="card-title">{{post.short}}</h5>
+    <a href="/computer-graphics/{{post.slug}}" class="btn btn-primary">Read Complete Topic</a>
+  </div>
+  <div class="card-footer text-muted">
+{{ post.date }}</div>
+</div>
+{% endfor %}
+{% for post in post4 %}
+<div class="card my-4">
+  <h4 class="card-header">
+    {{post.title}}
+  </h4>
+  <div class="card-body">
+    <h5 class="card-title">{{post.short}}</h5>
+    <a href="/microprocessor/{{post.slug}}" class="btn btn-primary">Read Complete Topic</a>
+  </div>
+  <div class="card-footer text-muted">
+{{ post.date }}</div>
+</div>
+{% endfor %}
+</div>
+{% endblock body %}

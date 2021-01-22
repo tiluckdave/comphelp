@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}MP Important Links - CompHelp{% endblock title %}
+{% block subjectActive %}active{% endblock subjectActive %}
+
+{% block body %}
+<div class="container my-3">
+<div>
+<ul class="nav nav-pills">
+  <li class="nav-item">
+    <a class="nav-link" href="/microprocessors">Topics</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/microprocessors/notes">Notes</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/microprocessors/mcqs">MCQs</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="/microprocessors/links">Important Links</a>
+  </li>
+</ul>
+</div>
+
+<h2 class="my-3">All Important Links in Microprocessors</h2>
+<hr>
+<div class="card my-4">
+  <h4 class="card-header">
+    Title
+  </h4>
+  <div class="card-body">
+    <h5 class="card-title">Short Description</h5>
+    <a href="/microprocessors/title" class="btn btn-primary">Read Complete Topic</a>
+  </div>
+  <div class="card-footer text-muted">
+Date Uploaded  </div>
+</div>
+
+</div>
+{% endblock body %}

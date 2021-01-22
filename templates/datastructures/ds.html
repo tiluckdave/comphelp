@@ -5,19 +5,37 @@
 
 {% block body %}
 <div class="container my-3">
-<h2 class="my-3">All Topics in Data Structures</h2>
-<hr>
-<div class="card my-4">
-  <h4 class="card-header">
-    Title
-  </h4>
-  <div class="card-body">
-    <h5 class="card-title">Short Description</h5>
-    <a href="/data-structures/title" class="btn btn-primary">Read Complete Topic</a>
-  </div>
-  <div class="card-footer text-muted">
-Date Uploaded  </div>
+<div>
+<ul class="nav nav-pills">
+  <li class="nav-item">
+    <a class="nav-link active" href="/data-structures">Topics</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/data-structures/notes">Notes</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/data-structures/mcqs">MCQs</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/data-structures/links">Important Links</a>
+  </li>
+</ul>
 </div>
 
+<h2 class="my-3">All Topics in Data Structures</h2>
+<hr>
+{% for dspost in dsposts %}
+<div class="card my-4">
+  <h4 class="card-header">
+    {{dspost.title}}
+  </h4>
+  <div class="card-body">
+    <h5 class="card-title">{{dspost.short}}</h5>
+    <a href="/data-structures/{{dspost.slug}}" class="btn btn-primary">Read Complete Topic</a>
+  </div>
+  <div class="card-footer text-muted">
+{{ dspost.date }}</div>
+</div>
+{% endfor %}
 </div>
 {% endblock body %}

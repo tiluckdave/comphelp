@@ -1,8 +1,10 @@
 <!doctype html>
 <html lang="en">
+  {% load static %}
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
   {% block style %}{% endblock style %}
     <title>{% block title %}{% endblock title %}</title>
@@ -22,9 +24,7 @@
         <li class="nav-item">
           <a class="nav-link {% block noticesActive %}{% endblock noticesActive %}" href="/notices">Notices</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link {% block requestActive %}{% endblock requestActive %}" href="/request">Request Conent</a>
-        </li>
+        
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle {% block subjectActive %}{% endblock subjectActive %}" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Subject
@@ -36,9 +36,12 @@
             <li><a class="dropdown-item" href="/microprocessors">Microprocessor</a></li>
           </ul>
         </li>
+        <li class="nav-item">
+          <a class="nav-link {% block requestActive %}{% endblock requestActive %}" href="/request">Request Conent</a>
+        </li>
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <form method="GET" action="/search" class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" name="q" id="q"  aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
     </div>

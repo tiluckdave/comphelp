@@ -6,19 +6,38 @@
 {% block body %}
 
 <div class="container my-3">
+<div>
+<ul class="nav nav-pills">
+  <li class="nav-item">
+    <a class="nav-link active" href="/computer-graphics">Topics</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/computer-graphics/notes">Notes</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/computer-graphics/mcqs">MCQs</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/computer-graphics/links">Important Links</a>
+  </li>
+</ul>
+</div>
+
 <h2 class="my-3">All Topics in Computer Graphics</h2>
 <hr>
+{% for cgpost in cgposts %}
 <div class="card my-4">
   <h4 class="card-header">
-    Title
+    {{cgpost.title}}
   </h4>
   <div class="card-body">
-    <h5 class="card-title">Short Description</h5>
-    <a href="/computer-graphics/title" class="btn btn-primary">Read Complete Topic</a>
+    <h5 class="card-title">{{cgpost.short}}</h5>
+    <a href="/computer-graphics/{{cgpost.slug}}" class="btn btn-primary">Read Complete Topic</a>
   </div>
   <div class="card-footer text-muted">
-Date Uploaded  </div>
+{{ cgpost.date }}</div>
 </div>
+{% endfor %}
 
 </div>
 {% endblock body %}
