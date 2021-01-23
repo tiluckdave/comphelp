@@ -5,38 +5,42 @@
 
 {% block body %}
 <div class="container my-3">
-<div>
-<ul class="nav nav-pills">
-  <li class="nav-item">
-    <a class="nav-link active" href="/microprocessors">Topics</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="/microprocessors/notes">Notes</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="/microprocessors/mcqs">MCQs</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="/microprocessors/links">Important Links</a>
-  </li>
-</ul>
-</div>
-
-<h2 class="my-3">All Topics in Microprocessors</h2>
-<hr>
-{% for mppost in mpposts %}
-<div class="card my-4">
-  <h4 class="card-header">
-    {{mppost.title}}
-  </h4>
-  <div class="card-body">
-    <h5 class="card-title">{{mppost.short}}</h5>
-    <a href="/microprocessors/{{mppost.slug}}" class="btn btn-primary">Read Complete Topic</a>
+  <div>
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <a class="nav-link active" href="/microprocessors">Topics</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/microprocessors/notes">Notes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/microprocessors/mcqs">MCQs</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/microprocessors/links">Important Links</a>
+      </li>
+    </ul>
   </div>
-  <div class="card-footer text-muted">
-{{ mppost.date }}</div>
-</div>
-{% endfor %}
+
+  <div class="d-grid gap-2 d-md-block">
+    <h2 class="my-3 d-inline-block">All Topics in Microprocessors</h2>
+    <a href="/microprocessors/add-topic" class="float-end mt-3 btn btn-primary">Add New Topic</a>
+  </div>
+
+  <hr>
+  {% for mppost in mpposts %}
+  <div class="card my-4">
+    <h4 class="card-header">
+      {{mppost.title}}
+    </h4>
+    <div class="card-body">
+      <h5 class="card-title">{{mppost.short}}</h5>
+      <a href="/microprocessors/{{mppost.slug}}" class="btn btn-primary">Read Complete Topic</a>
+    </div>
+    <div class="card-footer text-muted">
+      {{ mppost.date }}</div>
+  </div>
+  {% endfor %}
 
 </div>
 {% endblock body %}

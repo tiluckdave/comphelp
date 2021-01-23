@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Post
+from .models import Post, Note, Mcq, Link
 # Create your views here.
 def dt(request):
     dtposts = Post.objects.all()
@@ -7,13 +7,19 @@ def dt(request):
     return render(request, 'digitaltechniques/dt.html', context)
 
 def dtNotes(request):
-    return render(request, 'digitaltechniques/dtnotes.html')
+    dtnotes = Note.objects.all()
+    context = {'dtnotes': dtnotes}
+    return render(request, 'digitaltechniques/dtnotes.html', context)
 
 def dtMcqs(request):
-    return render(request, 'digitaltechniques/dtmcqs.html')
+    dtmcqs = Mcq.objects.all()
+    context = {'dtmcqs': dtmcqs}
+    return render(request, 'digitaltechniques/dtmcqs.html', context)
 
 def dtLinks(request):
-    return render(request, 'digitaltechniques/dtlinks.html')
+    dtlinks = Link.objects.all()
+    context = {'dtlinks': dtlinks}
+    return render(request, 'digitaltechniques/dtlinks.html', context)
 
 def dtPosts(request, slug):
     dtpost = Post.objects.filter(slug=slug).first()

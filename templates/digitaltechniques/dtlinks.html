@@ -21,19 +21,22 @@
 </ul>
 </div>
 
-<h2 class="my-3">All Important Links in Digital Techniques</h2>
+
+<div class="d-grid gap-2 d-md-block">
+    <h2 class="my-3 d-inline-block">All Important Links in Digital Techniques</h2>
+    <a href="/digital-techniques/add-link" class="float-end mt-3 btn btn-primary">Add New Link</a>
+  </div>
 <hr>
+{% for link in dtlinks %}
 <div class="card my-4">
   <h4 class="card-header">
-    Title
+    {{link.title}}
   </h4>
   <div class="card-body">
-    <h5 class="card-title">Short Description</h5>
-    <a href="/digital-techniques/title" class="btn btn-primary">Read Complete Topic</a>
+    <h5 class="card-title">{{link.short}}</h5>
+    <a href="{{link.link}}" target="_blank" class="btn btn-primary">Visit Link</a>
   </div>
-  <div class="card-footer text-muted">
-Date Uploaded  </div>
 </div>
-
+{% endfor %}
 </div>
 {% endblock body %}

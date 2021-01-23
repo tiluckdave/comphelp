@@ -6,12 +6,7 @@
 
 {% block body %}
 <div class="container">
-{% for message in messages %}
-<div class="alert alert-{{message.tags}} alert-dismissible fade show my-3" role="alert">
-  <strong>{{ message }}</strong>
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
-{% endfor %}
+
     <h2 class="my-3">Request a New Topic or Subject</h2>
     <form action="/request" method="POST">
         {% csrf_token %}

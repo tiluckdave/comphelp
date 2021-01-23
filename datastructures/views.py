@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Post
+from .models import Post, Note, Mcq, Link
 # Create your views here.
 def ds(request):
     dsposts = Post.objects.all()
@@ -7,13 +7,19 @@ def ds(request):
     return render(request, 'datastructures/ds.html', context)
 
 def dsNotes(request):
-    return render(request, 'datastructures/dsnotes.html')
+    dsnotes = Note.objects.all()
+    context = {'dsnotes': dsnotes}
+    return render(request, 'datastructures/dsnotes.html', context)
 
 def dsMcqs(request):
-    return render(request, 'datastructures/dsmcqs.html')
+    dsmcqs = Mcq.objects.all()
+    context = {'dsmcqs': dsmcqs}
+    return render(request, 'datastructures/dsmcqs.html', context)
 
 def dsLinks(request):
-    return render(request, 'datastructures/dslinks.html')
+    dslinks = Link.objects.all()
+    context = {'dslinks': dslinks}
+    return render(request, 'datastructures/dslinks.html', context)
 
 def dsPosts(request, slug):
     dspost = Post.objects.filter(slug=slug).first()

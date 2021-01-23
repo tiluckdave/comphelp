@@ -23,19 +23,24 @@
 </ul>
 </div>
 
-<h2 class="my-3">All Notes in Data Structures</h2>
+
+<div class="d-grid gap-2 d-md-block">
+    <h2 class="my-3 d-inline-block">All Notes in Data Structures</h2>
+    <a href="/data-structures/add-note" class="float-end mt-3 btn btn-primary">Add New Note</a>
+  </div>
 <hr>
+{% for note in dsnotes %}
 <div class="card my-4">
   <h4 class="card-header">
-    Title
+    {{note.title}}
   </h4>
   <div class="card-body">
-    <h5 class="card-title">Short Description</h5>
-    <a href="/computer-graphics/title" class="btn btn-primary">Read Complete Topic</a>
+    <h5 class="card-title">{{note.short}}</h5>
+    <a href="/media/{{note.file}}" target="_blank" class="btn btn-primary">Download or View</a>
   </div>
   <div class="card-footer text-muted">
-Date Uploaded  </div>
+{{note.date}}</div>
 </div>
-
+{% endfor %}
 </div>
 {% endblock body %}

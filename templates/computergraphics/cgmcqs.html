@@ -6,36 +6,54 @@
 {% block body %}
 
 <div class="container my-3">
-<div>
-<ul class="nav nav-pills">
-  <li class="nav-item">
-    <a class="nav-link" href="/computer-graphics">Topics</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="/computer-graphics/notes">Notes</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link active" href="/computer-graphics/mcqs">MCQs</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="/computer-graphics/links">Important Links</a>
-  </li>
-</ul>
-</div>
-
-<h2 class="my-3">All MCQS in Computer Graphics</h2>
-<hr>
-<div class="card my-4">
-  <h4 class="card-header">
-    Title
-  </h4>
-  <div class="card-body">
-    <h5 class="card-title">Short Description</h5>
-    <a href="/computer-graphics/title" class="btn btn-primary">Read Complete Topic</a>
+  <div>
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <a class="nav-link" href="/computer-graphics">Topics</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/computer-graphics/notes">Notes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="/computer-graphics/mcqs">MCQs</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/computer-graphics/links">Important Links</a>
+      </li>
+    </ul>
   </div>
-  <div class="card-footer text-muted">
-Date Uploaded  </div>
-</div>
 
-</div>
-{% endblock body %}
+  
+  <div class="d-grid gap-2 d-md-block">
+    <h2 class="my-3 d-inline-block">All MCQS in Computer Graphics</h2>
+    <a href="/computer-graphics/add-mcq" class="float-end mt-3 btn btn-primary">Add New MCQ</a>
+  </div>
+  <hr>
+  {% for mcq in cgmcqs %}
+  <div class="card my-4">
+    <h4 class="card-header">
+     {{mcq.question}}
+    </h4>
+    <div class="card-body">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><b>Option 1 </b>{{mcq.option1}}</li>
+        <li class="list-group-item"><b>Option 2 </b>{{mcq.option2}}</li>
+        <li class="list-group-item"><b>Option 3 </b>{{mcq.option3}}</li>
+        <li class="list-group-item"><b>Option 4 </b>{{mcq.option4}}</li>
+      </ul>
+
+      <p class="my-2">
+        <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
+          aria-controls="collapseExample">
+          View Answer
+        </a>
+      </p>
+      <div class="collapse" id="collapseExample">
+        <div class="card card-footer">
+          {{mcq.answer}}
+        </div>
+      </div>
+    </div>
+{% endfor %}
+  </div>
+  {% endblock body %}
