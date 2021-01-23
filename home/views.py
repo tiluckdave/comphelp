@@ -6,6 +6,10 @@ from datastructures.models import Post as Dsposts
 from digitaltechniques.models import Post as Dtposts
 from computergraphics.models import Post as Cgposts
 from microprocessors.models import Post as Mpposts
+from datastructures.models import Note as Dsnotes
+from digitaltechniques.models import Note as Dtnotes
+from computergraphics.models import Note as Cgnotes
+from microprocessors.models import Note as Mpnotes
 from django.contrib.auth.models import User
 from django.contrib.auth  import authenticate,  login, logout
 # Create your views here.
@@ -18,14 +22,18 @@ def notices(request):
 def search(request):
     if request.GET:
         query = request.GET['q']
-        if len(query)>60:
-            post1 = post2 = post3 = post4 = Dsposts.objects.none()
+        if len(query)>60 or len(query)<3:
+            post1 = post2 = post3 = post4 = note1 = note2 = note3 = note4 = Dsposts.objects.none()
         else:
             post1 = Dsposts.objects.filter(title__icontains=query) | Dsposts.objects.filter(slug__icontains=query) | Dsposts.objects.filter(intro__icontains=query) | Dsposts.objects.filter(short__icontains=query)
             post2 = Dtposts.objects.filter(title__icontains=query) | Dtposts.objects.filter(slug__icontains=query) | Dtposts.objects.filter(intro__icontains=query) | Dtposts.objects.filter(short__icontains=query)
             post3 = Cgposts.objects.filter(title__icontains=query) | Cgposts.objects.filter(slug__icontains=query) | Cgposts.objects.filter(intro__icontains=query) | Cgposts.objects.filter(short__icontains=query)
             post4 = Mpposts.objects.filter(title__icontains=query) | Mpposts.objects.filter(slug__icontains=query) | Mpposts.objects.filter(intro__icontains=query) | Mpposts.objects.filter(short__icontains=query)
-        context = {'post1': post1, 'post2': post2, 'post3': post3, 'post4': post4, 'query': query}
+            note1 = Dsnotes.objects.filter(title__icontains=query) | Dsnotes.objects.filter(short__icontains=query)
+            note2 = Dtnotes.objects.filter(title__icontains=query) | Dtnotes.objects.filter(short__icontains=query)
+            note3 = Cgnotes.objects.filter(title__icontains=query) | Cgnotes.objects.filter(short__icontains=query)
+            note4 = Mpnotes.objects.filter(title__icontains=query) | Mpnotes.objects.filter(short__icontains=query)
+        context = {'post1': post1, 'post2': post2, 'post3': post3, 'post4': post4, 'note1': note1, 'note2': note2, 'note3': note3, 'note4': note4, 'query': query}
         return render(request, 'home/search.html', context)
     else:
         return render(request, 'home/search.html')
