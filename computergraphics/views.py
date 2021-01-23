@@ -56,5 +56,7 @@ def postComment(request):
             mycomment=CgPostComment(comment=comment, user=user, post=post, parent=parent)
             mycomment.save()
             messages.success(request, "Your reply has been posted successfully")
-    return redirect(f"/computer-graphics/{post.slug}")
+        return redirect(f"/computer-graphics/{post.slug}")
+    else:
+        return redirect('/computer-graphics')
     

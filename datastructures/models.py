@@ -17,7 +17,7 @@ class Post(models.Model):
     image2 = models.ImageField(upload_to="images/data-structures")
     algo = models.TextField()
     code = models.TextField()
-    date = models.DateField()
+    date = models.DateField(default=now)
 
     def __str__(self):
         return self.title

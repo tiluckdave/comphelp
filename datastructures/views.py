@@ -55,5 +55,19 @@ def postComment(request):
             mycomment=DsPostComment(comment=comment, user=user, post=post, parent=parent)
             mycomment.save()
             messages.success(request, "Your reply has been posted successfully")
-    return redirect(f"/data-structures/{post.slug}")
+        return redirect(f"/data-structures/{post.slug}")
+    else:
+        return redirect('/data-structures')
+
+def addTopic(request):
+    return render(request, 'datastructures/addtopic.html')
+
+def addNote(request):
+    return render(request, 'datastructures/addnote.html')
+
+def addLink(request):
+    return render(request, 'datastructures/addlink.html')
+
+def addMcq(request):
+    return render(request, 'datastructures/addmcq.html')
     

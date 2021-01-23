@@ -55,5 +55,7 @@ def postComment(request):
             mycomment=DtPostComment(comment=comment, user=user, post=post, parent=parent)
             mycomment.save()
             messages.success(request, "Your reply has been posted successfully")
-    return redirect(f"/digital-techniques/{post.slug}")
+        return redirect(f"/digital-techniques/{post.slug}")
+    else:
+        return redirect('/digital-techniques')
     

@@ -55,5 +55,7 @@ def postComment(request):
             mycomment=MpPostComment(comment=comment, user=user, post=post, parent=parent)
             mycomment.save()
             messages.success(request, "Your reply has been posted successfully")
-    return redirect(f"/microprocessors/{post.slug}")
+        return redirect(f"/microprocessors/{post.slug}")
+    else:
+        return redirect('/microprocessors')
     

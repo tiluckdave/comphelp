@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}Add DS Topic - CompHelp{% endblock title %}
+
+{% block subjectActive %}active{% endblock subjectActive %}
+
+{% block body %}
+<div class="container">
+    <h2 class="my-3">Add new Topic Post in Data Structures</h2>
+    {% if user.is_authenticated %}
+
+    <form class="form-floating" action="/data-structures/add-topic" method="POST">
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="title" name="title">
+            <label for="title">Title for the Topic</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <textarea class="form-control" name="short" style="height: 100px" id="short"></textarea>
+            <label for="short">Short Description</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <textarea class="form-control" name="intro" style="height: 100px" id="intro"></textarea>
+            <label for="intro">Introduction to the topic</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <textarea class="form-control" name="explain" style="height: 300px" id="explain"></textarea>
+            <label for="explain">Detailed Explanation</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <textarea class="form-control" name="algo" style="height: 300px" id="algo"></textarea>
+            <label for="algo">Algorithm</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <textarea class="form-control" name="code" style="height: 300px" id="code"></textarea>
+            <label for="code">Code</label>
+        </div>
+
+        <div class="input-group mb-3">
+            <label for="main" class="input-group-text" id="basic-addon3">Upload Main Image</label>
+            <input class="form-control" type="file" name="main" id="main" aria-describedby="basic-addon3">
+        </div>
+
+        <div class="input-group mb-3">
+            <label for="main" class="input-group-text" id="basic-addon1">Extra Image 1</label>
+            <input class="form-control" type="file" name="main" id="main" aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group mb-3">
+            <label for="main" class="input-group-text" id="basic-addon2">Extra Image 2</label>
+            <input class="form-control" type="file" name="main" id="main" aria-describedby="basic-addon2">
+        </div>
+    </form>
+    {% else %}
+    <hr>
+    <h4 class="text-muted">Please login to request new content</h4>
+    {% endif %}
+</div>
+{% endblock body %}
