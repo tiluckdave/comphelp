@@ -3,10 +3,14 @@ from .models import Post, Note, Link, Mcq, CgPostComment
 from django.contrib import messages
 from django.contrib.auth.models import User
 from .templatetags import extras
+from django.core.paginator import Paginator
 
 # Create your views here.
 def cg(request):
     cgposts = Post.objects.all().order_by('-date')
+    paginator = Paginator(cgposts, 8)
+    page = request.GET.get('page')
+    cgposts = paginator.get_page(page)
     context = {'cgposts': cgposts}
     return render(request, 'computergraphics/cg.html', context)
 
