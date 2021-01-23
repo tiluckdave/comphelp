@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'datastructures.apps.DatastructuresConfig',
     'digitaltechniques.apps.DigitaltechniquesConfig',
     'microprocessors.apps.MicroprocessorsConfig',
+    'django.contrib.humanize',
 
     # admin apps
     'django.contrib.admin',

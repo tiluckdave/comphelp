@@ -83,10 +83,10 @@ def handeLogin(request):
         if user is not None:
             login(request, user)
             messages.success(request, "Successfully Logged In")
-            return redirect("home")
+            return redirect('/')
         else:
             messages.error(request, "Invalid credentials! Please try again")
-            return redirect("home")
+            return redirect('/')
 
     return HttpResponse("404- Not found")
 

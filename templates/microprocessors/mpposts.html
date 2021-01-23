@@ -108,7 +108,8 @@
 
 {% endblock script %}
 {% block body %}
-
+{% load humanize %}
+{% load extras %}
 
 
 
@@ -132,6 +133,82 @@
         <h2>4. Code</h2>
         <pre><code class="language-asm6502">{{mppost.code}}</code></pre>
     </main>
+
+    <h4 class="my-3">Comments <span class="badge bg-primary">{{comments.count}}</span></h4>
+    {% if user.is_authenticated %}
+    <form class="form-floating my-3" action="/microprocessors/postComment" method="POST">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">Comment Here</span>
+            <input type="text" id="comment" name="comment" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default" placeholder="Leave a comment">
+            <input type="hidden" name="postSno" id="postSno" value="{{mppost.sno}}">
+            <input type="hidden" name="parentSno" value="">
+            <input type="submit" class="btn btn-primary" value="Post">
+        </div>
+    </form>
+    {% else %}
+    <p>Please Login to post a comment.</p>
+    {% endif %}
+    {% for comment in comments %}
+
+    <div class="card my-3">
+        <div class="card-header text-primary">
+            {{comment.user.username}}<small class="text-muted"> {{comment.timestamp|naturaltime}}</small>
+        </div>
+        <div class="card-body">
+            <p class="card-text">&gt;&gt;&gt; {{comment.comment}}</p>
+        </div>
+        <div class="card-footer">
+            <div class="row">
+                <div class="col-md-1">
+                    <button class="btn btn-sm btn-primary" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#replyComment{{comment.sno}}" aria-expanded="false"
+                        aria-controls="replyComment{{comment.sno}}">
+                        Reply
+                    </button>
+                </div>
+                <div class="col-md-11">
+
+                    <div class="collapse" id="replyComment{{comment.sno}}">
+                        
+                            {% if user.is_authenticated %}
+                            <form class="form-floating" action="/microprocessors/postComment" method="POST">
+                                {% csrf_token %}
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Reply</span>
+                                    <input type="text" id="comment" name="comment" class="form-control"
+                                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
+                                        placeholder="Reply this comment">
+                                    <input type="hidden" name="postSno" id="postSno" value="{{mppost.sno}}">
+                                    <input type="hidden" name="parentSno" value="{{comment.sno}}">
+                                    <input type="submit" class="btn btn-primary" value="Post">
+                                </div>
+                            </form>
+                            {% else %}
+                            <p>Please Login to Reply a comment.</p>
+                            {% endif %}
+                            
+                    </div>
+                    
+                    {% for reply in replyDict|get_val:comment.sno %}
+                        <div class="card mb-2">
+                            <div class="card-header text-primary">
+                                {{reply.user.username}}<small class="text-muted"> replied {{reply.timestamp|naturaltime}}</small>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">&gt;&gt;&gt; {{reply.comment}}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    {% endfor %}
 
 </div>
 

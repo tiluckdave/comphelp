@@ -8,6 +8,7 @@
 <div class="container">
 
     <h2 class="my-3">Request a New Topic or Subject</h2>
+    {% if user.is_authenticated %}
     <form action="/request" method="POST">
         {% csrf_token %}
         <div class="row g-2">
@@ -40,5 +41,9 @@
             <button type="submit" class="btn btn-primary">Request</button>
         </div>
     </form>
+    {% else %}
+    <hr>
+    <h3 class="text-muted">Please login to request new content</h3>
+    {% endif %}
 </div>
 {% endblock body %}
