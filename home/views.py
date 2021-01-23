@@ -36,7 +36,7 @@ def search(request):
         context = {'post1': post1, 'post2': post2, 'post3': post3, 'post4': post4, 'note1': note1, 'note2': note2, 'note3': note3, 'note4': note4, 'query': query}
         return render(request, 'home/search.html', context)
     else:
-        return render(request, 'home/search.html')
+        return redirect('/')
 
 def request(request):
     if request.method=='POST':

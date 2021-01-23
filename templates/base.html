@@ -46,24 +46,26 @@
           </li>
         </ul>
         <form method="GET" action="/search" class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" name="q" id="q" aria-label="Search">
-          <button class="btn btn-primary" type="submit">Search</button>
+          <div class="input-group mx-3">
+          <input class="form-control" type="search" placeholder="Search" name="q" id="q" aria-label="Search" aria-describedby="button-addon2">
+          <button class="btn btn-primary" type="submit" id="button-addon2">Search</button>
+        </div>
         </form>
 
         {% if user.is_authenticated %}
         <div class="ml-auto">
-        <ul class="navbar-nav mx-2">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown1" role="button"
-              data-bs-toggle="dropdown" aria-expanded="false">
-              Welcome {{request.user}}
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown1">
-              <li><a class="dropdown-item" href="/logout">Logout</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
+          <ul class="navbar-nav mx-2">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown1" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Welcome {{request.user}}
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown1">
+                <li><a class="dropdown-item" href="/logout">Logout</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
       </div>
       {% else %}
       <!-- Button trigger modal -->
