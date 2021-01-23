@@ -6,12 +6,12 @@ from .templatetags import extras
 
 # Create your views here.
 def cg(request):
-    cgposts = Post.objects.all()
+    cgposts = Post.objects.all().order_by('-date')
     context = {'cgposts': cgposts}
     return render(request, 'computergraphics/cg.html', context)
 
 def cgNotes(request):
-    cgnotes = Note.objects.all()
+    cgnotes = Note.objects.all().order_by('-date')
     context = {'cgnotes': cgnotes}
     return render(request, 'computergraphics/cgnotes.html', context)
 
@@ -29,8 +29,8 @@ def cgPosts(request, slug):
     cgpost = Post.objects.filter(slug=slug).first()
     if not cgpost:
         return redirect('/computer-graphics')
-    comments= CgPostComment.objects.filter(post=cgpost, parent=None)
-    replies= CgPostComment.objects.filter(post=cgpost).exclude(parent=None)
+    comments= CgPostComment.objects.filter(post=cgpost, parent=None).order_by('-timestamp')
+    replies= CgPostComment.objects.filter(post=cgpost).exclude(parent=None).order_by('-timestamp')
     replyDict={}
     for reply in replies:
         if reply.parent.sno not in replyDict.keys():

@@ -5,12 +5,12 @@ from django.contrib.auth.models import User
 from .templatetags import extras
 # Create your views here.
 def dt(request):
-    dtposts = Post.objects.all()
+    dtposts = Post.objects.all().order_by('-date')
     context = {'dtposts': dtposts}
     return render(request, 'digitaltechniques/dt.html', context)
 
 def dtNotes(request):
-    dtnotes = Note.objects.all()
+    dtnotes = Note.objects.all().order_by('-date')
     context = {'dtnotes': dtnotes}
     return render(request, 'digitaltechniques/dtnotes.html', context)
 
@@ -28,8 +28,8 @@ def dtPosts(request, slug):
     dtpost = Post.objects.filter(slug=slug).first()
     if not dtpost:
         return redirect('/digital-techniques')
-    comments= DtPostComment.objects.filter(post=dtpost, parent=None)
-    replies= DtPostComment.objects.filter(post=dtpost).exclude(parent=None)
+    comments= DtPostComment.objects.filter(post=dtpost, parent=None).order_by('-timestamp')
+    replies= DtPostComment.objects.filter(post=dtpost).exclude(parent=None).order_by('-timestamp')
     replyDict={}
     for reply in replies:
         if reply.parent.sno not in replyDict.keys():

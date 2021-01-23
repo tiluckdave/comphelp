@@ -5,12 +5,12 @@ from django.contrib.auth.models import User
 from .templatetags import extras
 # Create your views here.
 def ds(request):
-    dsposts = Post.objects.all()
+    dsposts = Post.objects.all().order_by('-date')
     context = {'dsposts': dsposts}
     return render(request, 'datastructures/ds.html', context)
 
 def dsNotes(request):
-    dsnotes = Note.objects.all()
+    dsnotes = Note.objects.all().order_by('-date')
     context = {'dsnotes': dsnotes}
     return render(request, 'datastructures/dsnotes.html', context)
 
@@ -28,8 +28,8 @@ def dsPosts(request, slug):
     dspost = Post.objects.filter(slug=slug).first()
     if not dspost:
         return redirect('/data-structures')
-    comments= DsPostComment.objects.filter(post=dspost, parent=None)
-    replies= DsPostComment.objects.filter(post=dspost).exclude(parent=None)
+    comments= DsPostComment.objects.filter(post=dspost, parent=None).order_by('-timestamp')
+    replies= DsPostComment.objects.filter(post=dspost).exclude(parent=None).order_by('-timestamp')
     replyDict={}
     for reply in replies:
         if reply.parent.sno not in replyDict.keys():

@@ -5,12 +5,12 @@ from django.contrib.auth.models import User
 from .templatetags import extras
 # Create your views here.
 def mp(request):
-    mpposts = Post.objects.all()
+    mpposts = Post.objects.all().order_by('-date')
     context = {'mpposts': mpposts}
     return render(request, 'microprocessors/mp.html', context)
 
 def mpNotes(request):
-    mpnotes = Note.objects.all()
+    mpnotes = Note.objects.all().order_by('-date')
     context = {'mpnotes': mpnotes}
     return render(request, 'microprocessors/mpnotes.html', context)
 
@@ -28,16 +28,8 @@ def mpPosts(request, slug):
     mppost = Post.objects.filter(slug=slug).first()
     if not mppost:
         return redirect('/microprocessors')
-    context = {'mppost': mppost}
-    return render(request, 'microprocessors/mpposts.html', context)
-
-
-def mpPosts(request, slug):
-    mppost = Post.objects.filter(slug=slug).first()
-    if not mppost:
-        return redirect('/microprocessors')
-    comments= MpPostComment.objects.filter(post=mppost, parent=None)
-    replies= MpPostComment.objects.filter(post=mppost).exclude(parent=None)
+    comments= MpPostComment.objects.filter(post=mppost, parent=None).order_by('-timestamp')
+    replies= MpPostComment.objects.filter(post=mppost).exclude(parent=None).order_by('-timestamp')
     replyDict={}
     for reply in replies:
         if reply.parent.sno not in replyDict.keys():

@@ -69,6 +69,9 @@ def handelSignup(request):
         myuser.first_name = name
         myuser.save()
         messages.success(request, "Your account has been created successfully")
+        user=authenticate(username= username, password= pass2)
+        if user is not None:
+            login(request, user)
         return redirect('/')
     else:
         return HttpResponse("404 - Not Found")
