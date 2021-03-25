@@ -41,5 +41,21 @@
 {{note.date}}</div>
 </div>
 {% endfor %}
+
+<div>
+    {% if cgnotes.has_previous %}
+    <a class="btn btn-primary" href="/computer-graphics/notes?page={{cgnotes.number|add:" -1"}}">Previous</a>
+    {% else %}
+    <a class="btn btn-primary disabled" href="/computer-graphics/notes">Previous</a>
+    {% endif %}
+    {% if cgnotes.has_next %}
+    <a class="btn btn-primary float-end" href="/computer-graphics/notes?page={{cgnotes.number|add:" 1"}}">Next</a>
+    {% else %}
+    <a class="btn btn-primary float-end disabled" href="/computer-graphics/notes">Next</a>
+    {% endif %}
+
+
+  </div>
+
 </div>
 {% endblock body %}

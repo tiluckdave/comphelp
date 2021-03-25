@@ -23,7 +23,7 @@
     </ul>
   </div>
 
-  
+
   <div class="d-grid gap-2 d-md-block">
     <h2 class="my-3 d-inline-block">All MCQS in Computer Graphics</h2>
     <a href="/computer-graphics/add-mcq" class="float-end mt-3 btn btn-primary">Add New MCQ</a>
@@ -32,7 +32,7 @@
   {% for mcq in cgmcqs %}
   <div class="card my-4">
     <h4 class="card-header">
-     {{mcq.question}}
+      {{mcq.question}}
     </h4>
     <div class="card-body">
       <ul class="list-group list-group-flush">
@@ -54,6 +54,24 @@
         </div>
       </div>
     </div>
-{% endfor %}
   </div>
-  {% endblock body %}
+  {% endfor %}
+
+
+  <div>
+    {% if cgmcqs.has_previous %}
+    <a class="btn btn-primary" href="/computer-graphics/mcqs?page={{cgmcqs.number|add:" -1"}}">Previous</a>
+    {% else %}
+    <a class="btn btn-primary disabled" href="/computer-graphics/mcqs">Previous</a>
+    {% endif %}
+    {% if cgmcqs.has_next %}
+    <a class="btn btn-primary float-end" href="/computer-graphics/mcqs?page={{cgmcqs.number|add:" 1"}}">Next</a>
+    {% else %}
+    <a class="btn btn-primary float-end disabled" href="/computer-graphics/mcqs">Next</a>
+    {% endif %}
+
+
+  </div>
+
+</div>
+{% endblock body %}

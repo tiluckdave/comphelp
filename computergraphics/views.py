@@ -16,16 +16,25 @@ def cg(request):
 
 def cgNotes(request):
     cgnotes = Note.objects.all().order_by('-date')
+    paginator = Paginator(cgnotes, 8)
+    page = request.GET.get('page')
+    cgnotes = paginator.get_page(page)
     context = {'cgnotes': cgnotes}
     return render(request, 'computergraphics/cgnotes.html', context)
 
 def cgMcqs(request):
     cgmcqs = Mcq.objects.all()
+    paginator = Paginator(cgmcqs, 8)
+    page = request.GET.get('page')
+    cgmcqs = paginator.get_page(page)
     context = {'cgmcqs': cgmcqs}
     return render(request, 'computergraphics/cgmcqs.html', context)
 
 def cgLinks(request):
     cglinks = Link.objects.all()
+    paginator = Paginator(cglinks, 8)
+    page = request.GET.get('page')
+    cglinks = paginator.get_page(page)
     context = {'cglinks': cglinks}
     return render(request, 'computergraphics/cglinks.html', context)
 
